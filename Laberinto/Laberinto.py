@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+from FactoryMethod.FactoryMethod import Creator
+
 class ElementoMapa:
 
     def entrar(self):
@@ -366,4 +369,145 @@ class Juego:
         laberinto.agregarHabitacion(hab2)
         return laberinto
 
-    #def crearLaberinto2HabitacionesFM(self):
+    def crearLaberinto2HabitacionesFM(self):
+
+        unFM = Creator()
+
+        hab1 = unFM.fabricarHabitacion(1)
+        hab2 = unFM.fabricarHabitacion(2)
+
+        puerta = unFM.fabricarPuerta()
+        puerta.set_lado1(hab1)
+        puerta.set_lado2(hab2)
+
+        hab1.set_sur(puerta)
+        hab2.set_norte(puerta)
+
+        laberinto = unFM.fabricarLaberinto()
+        laberinto.agregarHabitacion(hab1)
+        laberinto.agregarHabitacion(hab2)
+
+        return laberinto
+    
+    def crearLaberinto2HabitacionesFM(self, unFM):
+        hab1 = unFM.fabricarHabitacion(1)
+        hab2 = unFM.fabricarHabitacion(2)
+
+        puerta = unFM.fabricarPuerta()
+
+        puerta.set_lado1(hab1)
+        puerta.set_lado2(hab2)
+
+        hab1.ponerEnOr(puerta, unFM.fabricarSur())
+        hab2.ponerEnOr(puerta, unFM.fabricarNorte())    
+
+        laberinto = unFM.fabricarLaberinto()
+        laberinto.agregarHabitacion(hab1)
+        laberinto.agregarHabitacion(hab2)
+
+        return laberinto
+    
+    def crearLaberinto2HabitacionesFMD(self, unFM):
+        
+        hab1 = unFM.fabricarHabitacion(1)
+        hab2 = unFM.fabricarHabitacion(2)
+
+        bomba1 = unFM.fabricarBomba()
+        bomba1.em = unFM.fabricarPared()
+        hab1.set_este=bomba1
+
+        bomba2 = unFM.fabricarBomba()
+        bomba2.em = unFM.fabricarPared()
+        hab2.set_este=bomba2
+
+        puerta = unFM.fabricarPuerta()
+        puerta.set_lado1(hab1)
+        puerta.set_lado2(hab2)
+
+        hab1.set_sur(puerta)
+        hab2.set_norte(puerta)
+
+        laberinto = unFM.fabricarLaberinto()
+        laberinto.agregarHabitacion(hab1)
+        laberinto.agregarHabitacion(hab2)
+
+        return laberinto
+    
+    def crearLaberinto4H4BFM(self,unFM):
+
+        norte = unFM.fabricarNorte()
+        sur = unFM.fabricarSur()
+        este = unFM.fabricarEste()
+        oeste = unFM.fabricarOeste()
+
+
+        hab1 = unFM.fabricarHabitacion(1)
+        hab2 = unFM.fabricarHabitacion(2)
+        hab3 = unFM.fabricarHabitacion(3)
+        hab4 = unFM.fabricarHabitacion(4)
+
+        puerta1 = unFM.fabricarPuerta()
+        puerta2 = unFM.fabricarPuerta()
+        puerta3 = unFM.fabricarPuerta()
+        puerta4 = unFM.fabricarPuerta()
+
+        puerta1.set_lado1(hab1)
+        puerta1.set_lado2(hab2)
+        puerta2.set_lado1(hab1)
+        puerta2.set_lado2(hab3)
+        puerta3.set_lado1(hab2)
+        puerta3.set_lado2(hab4)
+        puerta4.set_lado1(hab3)
+        puerta4.set_lado2(hab4)
+
+        hab1.ponerEnOr(puerta1, sur)
+        hab2.ponerEnOr(puerta1, norte)
+        hab1.ponerEnOr(puerta2, este)
+        hab3.ponerEnOr(puerta2, oeste)
+        hab2.ponerEnOr(puerta3, este)
+        hab4.ponerEnOr(puerta3, oeste)
+        hab3.ponerEnOr(puerta4, sur)
+        hab4.ponerEnOr(puerta4, norte)
+
+        bicho1 = unFM.fabricarBichoAgresivo()
+        bicho2 = unFM.fabricarBichoAgresivo()
+        bicho3 = unFM.fabricarBichoPerezoso()
+        bicho4 = unFM.fabricarBichoPerezoso()
+
+        laberinto = unFM.fabricarLaberinto()
+        laberinto.agregarHabitacion(hab1)
+        laberinto.agregarHabitacion(hab2)
+        laberinto.agregarHabitacion(hab3)
+        laberinto.agregarHabitacion(hab4)
+        laberinto.agregarBicho(bicho1)
+        laberinto.agregarBicho(bicho2)
+        laberinto.agregarBicho(bicho3)
+        laberinto.agregarBicho(bicho4)
+
+        bicho1.set_posicion(hab1)
+        bicho2.set_posicion(hab3)
+        bicho3.set_posicion(hab2)
+        bicho4.set_posicion(hab4)
+
+        return laberinto
+    
+    def eliminarBichos(self, unBicho):
+        try:
+            self.bichos.remove(unBicho)
+
+        except ValueError:
+            print("No existe ese objeto bicho")
+
+
+    def __init__(self):
+        self.bichos = []
+
+    
+    def get_laberinto(self):
+        return self.laberinto
+    
+    def set_laberinto(self, laberinto):
+        self.laberinto = laberinto
+
+    def obtenerHabitacion(self, num):
+        return self.laberinto.obtenerHabitacion(num)
