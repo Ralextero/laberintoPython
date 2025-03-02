@@ -70,7 +70,7 @@ class Contenedor(ElementoMapa):
         unaOrientacion.ponerElemento(unEM, self)
     
 
-class Habitacion(ElementoMapa):
+class Habitacion(Contenedor):
 
     def entrar(self):
         return "Estas en una habitacion"
@@ -108,7 +108,7 @@ class Habitacion(ElementoMapa):
     def set_num(self, num):
         self.num = num
 
-class Laberinto(ElementoMapa):
+class Laberinto(Contenedor):
 
     def entrar(self):
         return "Estas en un laberinto"
