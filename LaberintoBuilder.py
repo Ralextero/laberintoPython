@@ -20,6 +20,20 @@ class LaberintoBuilder:
         self.laberinto = None
         self.juego = None
 
+    def fabricarArmario(self, unNum, unContenedor):
+    
+        from Armario import Armario  # Importa aquí para evitar dependencias circulares si las hay
+
+        arm = Armario()
+        arm.num = unNum
+        arm.forma = self.fabricarForma()
+
+        for each in arm.obtenerOrientaciones():
+            arm.ponerEnOr(each, self.fabricarPared())
+
+        unContenedor.agregarHijo(arm)
+        return arm
+
     def fabricarBichoAgresivo(self):
         bicho = Bicho()
         bicho.modo = Agresivo()
@@ -52,7 +66,7 @@ class LaberintoBuilder:
     
     def fabricarBichoModo(self, strModo, unNum):
     
-        hab = self.laberinto.obtenerHabitacion(unNum)
+        hab = self.juego.obtenerHabitacion(unNum)
 
         bicho = getattr(self, f"fabricarBicho{strModo.capitalize()}")()
 
@@ -75,6 +89,7 @@ class LaberintoBuilder:
     
     def fabricarSur(self):
         return Sur()
+    
     
     def fabricarForma(self):
         forma = Cuadrado()
@@ -100,7 +115,8 @@ class LaberintoBuilder:
     
     def fabricarJuego(self):
         self.juego= Juego()
-        self.juego.laberinto= self.laberinto
+        self.juego.prototipo = self.laberinto
+        self.juego.laberinto= self.juego.clonarLaberinto()
 
     def fabricarLaberinto(self):
         self.laberinto = Laberinto()
@@ -124,7 +140,9 @@ class LaberintoBuilder:
         return Pared()
 
     def fabricarTunelEn(self, unContenedor):
+        from Entrar import Entrar  # Importa aquí para evitar dependencias circulares si las hay
         tunel = Tunel()
+        tunel.agregarComando(Entrar(receptor=tunel))
         unContenedor.agregarHijo(tunel)
 
     def obtenerJuego(self):

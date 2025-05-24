@@ -27,6 +27,9 @@ class Juego:
         bicho = next((b for b in self.bichos if b.estaVivo() and b.posicion == posPerson), None)
         if bicho != None:
             bicho.esAtacadoPor(self.person)
+            print(f"{self.person} ataca a {bicho} en la habitacion {posPerson.num}")
+        else:
+            print(f"{self.person} no hay bichos en la habitacion {posPerson.num}")
 
     def buscarPersonaje(self, unBicho):
         posBicho = unBicho.posicion
@@ -36,6 +39,11 @@ class Juego:
                     
     def cerrarPuertas(self):
         self.laberinto.cerrarPuertas()
+        import copy
+
+    def clonarLaberinto(self):
+        import copy
+        return copy.deepcopy(self.prototipo)
 
     def crearLaberinto2Habitaciones(self):
 
@@ -237,6 +245,10 @@ class Juego:
     def terminarBichos(self):
         for each in self.bichos:
             self.terminarBicho(each)
+
+    def obtenerHabitacion(self,unNum):
+        return self.laberinto.obtenerHabitacion(unNum)
+    
 
     def __str__(self):
         return "Juego"

@@ -1,5 +1,7 @@
 import json
 from LaberintoBuilder import LaberintoBuilder
+from LaberintoBuilderHexagono import LaberintoBuilderHexagono
+from LaberintoBuilderOctogono import LaberintoBuilderOctogono
 from LaberintoBuilderRombo import LaberintoBuilderRombo
 
 
@@ -60,6 +62,10 @@ class Director:
             self.builder = LaberintoBuilder()
         elif self.dict.get('forma') == 'rombo':
             self.builder = LaberintoBuilderRombo()
+        elif self.dict.get('forma') == 'hexagono':
+            self.builder = LaberintoBuilderHexagono()
+        elif self.dict.get('forma') == 'octogono':
+            self.builder = LaberintoBuilderOctogono()
 
     def leerArchivo(self, unArchivoJSON):
     
@@ -72,6 +78,6 @@ class Director:
     def procesar(self, unArchivoJSON):
         self.leerArchivo(unArchivoJSON)
         self.iniBuilder()
-        self.fabricarJuego()
         self.fabricarLaberinto()
+        self.fabricarJuego()
         self.fabricarBichos()

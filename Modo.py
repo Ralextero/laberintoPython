@@ -11,6 +11,9 @@ class Modo:
     def atacar(self, unBicho):
         unBicho.atacar()
 
+    def buscarTunelBicho(self, unBicho):
+        pass
+
     def camina(self, unBicho):
         ori = unBicho.obtenerOrientacion()
         ori.caminar(unBicho)

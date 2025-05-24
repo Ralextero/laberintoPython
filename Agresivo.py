@@ -3,6 +3,12 @@ from Modo import Modo
 
 class Agresivo(Modo):
 
+    def buscarTunelBicho(self, unBicho):
+        pos = unBicho.posicion
+        tunel = next((each for each in pos.hijos if each.esTunel()), None)
+        if tunel is not None:
+            tunel.entrar(unBicho)
+
     def dormir(self, unBicho):
         print(f"{unBicho} duerme")
         time.sleep(1)

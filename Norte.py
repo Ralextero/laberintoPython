@@ -22,5 +22,9 @@ class Norte(Orientacion):
     def recorrer(self, unBloque, unContenedor):
         unContenedor.norte.recorrer(unBloque)
 
+    def calcularPosicionDesde(self, unaForma):
+        unPunto = (unaForma.punto.x, unaForma.punto.y - 1)
+        unaForma.norte.calcularPosicionDesde(unaForma, unPunto)
+
     def __str__(self):
         return f"Norte"

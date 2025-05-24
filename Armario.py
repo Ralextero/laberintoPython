@@ -10,3 +10,6 @@ class Armario(Contenedor):
     
     def __str__(self):
         return "Armario"
+    
+    def visitarContenedor(self, unVisitor):
+        unVisitor.visitarArmario(self)

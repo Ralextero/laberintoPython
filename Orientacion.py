@@ -11,3 +11,6 @@ class Orientacion:
 
     def recorrer(self, unBloque, unContenedor):
         pass
+
+    def calcularPosicionDesde(self, unaForma):
+        pass

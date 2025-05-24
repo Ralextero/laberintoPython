@@ -8,9 +8,9 @@ class Habitacion(Contenedor):
     
     def esHabitacion(self):
         return True
-    
-    def printOn(self):
-        print(f"Hab {self.num}")
 
     def __str__(self):
         return f"Habitacion {self.num}"
+    
+    def visitarContenedor(self, unVisitor):
+        unVisitor.visitarContenedor(self)

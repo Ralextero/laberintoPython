@@ -39,3 +39,9 @@ class Forma:
     
     def __str__(self):
         return "Forma"
+    
+    def calcularPosicion(self):
+        for or_ in self.orientaciones:
+            or_.calcularPosicionDesde(self)
+
+    

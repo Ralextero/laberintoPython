@@ -24,3 +24,7 @@ class Este(Orientacion):
 
     def __str__(self):
         return f"Este"
+    
+    def calcularPosicionDesde(self, unaForma):
+        unPunto = (unaForma.punto.x + 1, unaForma.punto.y)
+        unaForma.este.calcularPosicionDesde(unaForma, unPunto)

@@ -20,6 +20,33 @@ class LaberintoBuilderTest(TestCase):
         self.assertTrue(hab.num == num, "El número de la habitación no coincide")
         return hab
     
+    def comprobarLaberintoRecursivo(self, unDic, padre):
+        nada = True
+        con = None
+
+    # Contenedores
+        if unDic.get('tipo') == 'habitacion':
+            nada = False
+            con = self.comprobarHabitacion(unDic.get('num'))
+        if unDic.get('tipo') == 'armario':
+            nada = False
+            con = self.comprobarArmario(unDic.get('num'), padre)
+
+    # Hojas
+        if unDic.get('tipo') == 'bomba':
+            nada = False
+            self.comprobarBomba(padre)
+        if unDic.get('tipo') == 'tunel':
+            nada = False
+            self.comprobarTunel(padre)
+
+        lista = unDic.get('hijos', None)
+        if lista is not None:
+            for each in lista:
+                self.comprobarLaberintoRecursivo(each, con)
+
+        if nada:
+            self.assertFalse(True, "No se reconoció el tipo de elemento en el diccionario")
 
     def comprobarPuerta(self, unNum, unaOr, otroNum, otraOr):
         
@@ -50,10 +77,10 @@ class LaberintoBuilderTest(TestCase):
         self.assertTrue(tunel.esTunel(), "El objeto encontrado no es un túnel")
 
     def setUp(self):
-        
-        super().setUp()  
+        super().setUp()
         self.director = Director()
-        ruta = r'C:\Users\alexr\Desktop\UCLM\Ano_3\Cuatrimestre 2\Diseño software\laberintos\lab2HTunel.json'
+        ruta_base = r'C:\Users\alexr\Desktop\UCLM\Ano_3\Cuatrimestre 2\Diseño software\laberintos\\'
+        ruta = ruta_base + 'lab2HTunel.json'
         self.director.procesar(ruta)
         self.dict = self.director.dict
         self.juego = self.director.obtenerJuego()

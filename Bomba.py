@@ -17,3 +17,10 @@ class Bomba(Decorator):
 
     def __str__(self):
         return f"Bomba {self.activa}"
+    
+    def aceptar(self, unVisitor):
+        unVisitor.visitarBomba(self)
+
+    def activar(self):
+        self.activa = True
+        print("Bomba activada")

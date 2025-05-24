@@ -1,7 +1,7 @@
 class ElementoMapa:
 
     def __init__(self):
-        self.padre = None
+        self.comandos = []
 
     def entrar(self):
         pass
@@ -32,3 +32,21 @@ class ElementoMapa:
 
     def __str__(self):
         return "ElementoMapa"
+    
+    def aceptar(self, unVisitor):
+        pass
+
+    def agregarComando(self, unComando):
+        self.comandos.append(unComando)
+
+    def calcularPosicionDesdeEn(self, unaForma, unPunto):
+        pass
+    
+    def eliminarComando(self, unComando):
+        try:
+            self.comandos.remove(unComando)
+        except ValueError:
+            print("No existe ese comando")
+
+    def obtenerComandos(self):
+        return self.comandos

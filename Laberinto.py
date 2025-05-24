@@ -8,6 +8,10 @@ class Laberinto(Contenedor):
     def abrirPuertas(self):
         self.recorrer(lambda each: each.abrir() if each.esPuerta() and not each.estaAbierta() else None)
 
+    def aceptar(self, unVisitor):
+        for each in self.hijos:
+            each.aceptar(unVisitor)
+
     def cerrarPuertas(self):
         self.recorrer(lambda each: each.cerrar() if each.esPuerta() and each.estaAbierta() else None)
 

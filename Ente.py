@@ -1,10 +1,13 @@
+from Muerto import Muerto
+from Vivo import Vivo
+
+
 class Ente:
 
     def __init__(self):
         self.vidas = None
         self.poder = None
-        self.posicion = None
-        self.juego = None
+        self.estadoEnte = Vivo()
 
     def esAtacadoPor(self,alguien):
         print(f"{self} es atacado por {alguien}")
@@ -17,11 +20,28 @@ class Ente:
         return self.vidas > 0
     
     def heMuerto(self):
-        pass
-
-    def __init__(self):
-        self.vidas = 5
-        self.poder = 1
+        self.estadoEnte = Muerto()
+        self.avisar()
 
     def __str__(self):
         return "Ente"
+    
+    def atacar(self):
+        self.estadoEnte.atacar(self)
+
+    def avisar(self):
+        pass
+
+    def buscarTunel(self):
+        pass
+
+    def crearNuevoLaberinto(self):
+        pass
+
+    def juegoClonaLaberinto(self):
+        return self.juego.clonarLaberinto()
+    
+    def puedeAtacar(self):
+        pass
+
+    
