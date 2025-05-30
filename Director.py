@@ -32,12 +32,10 @@ class Director:
           self.fabricarLaberintoRecursivo(each, 'root')
         puertas = self.dict.get('puertas', [])
         for each in puertas:
-            self.builder.fabricarPuertaL1(
-                each[0],  # Número de la primera habitación
-                each[1],  # Orientación de la primera habitación
-                each[2],  # Número de la segunda habitación
-                each[3]   # Orientación de la segunda habitación
-            )
+            if len(each) == 5 and each[4] == "con_llave":
+                self.builder.fabricarPuertaL1(each[0], each[1], each[2], each[3], each[4])
+            else:
+                self.builder.fabricarPuertaL1(each[0], each[1], each[2], each[3])
 
     def fabricarLaberintoRecursivo(self, unDic, padre):
     
@@ -45,7 +43,14 @@ class Director:
             con = self.builder.fabricarHabitacion(unDic.get('num'))
         elif unDic.get('tipo') == 'armario':
             con = self.builder.fabricarArmario(unDic.get('num'), padre)
-
+        elif unDic.get('tipo') == 'cofre':
+            con = self.builder.fabricarCofre(padre)
+        elif unDic.get('tipo') == 'llave':
+            from Llave import Llave
+            con = self.builder.fabricarLlave(padre)
+        elif unDic.get('tipo') == 'moneda':
+            from Moneda import Moneda
+            con = self.builder.fabricarMoneda(padre)
         if unDic.get('tipo') == 'bomba':
             self.builder.fabricarBombaEn(padre)
         elif unDic.get('tipo') == 'tunel':

@@ -1,16 +1,20 @@
 from Agresivo import Agresivo
 from Bicho import Bicho
 from Bomba import Bomba
+from Cofre import Cofre
 from Cuadrado import Cuadrado
 from Este import Este
 from Habitacion import Habitacion
 from Juego import Juego
 from Laberinto import Laberinto
+from Llave import Llave
+from Moneda import Moneda
 from Norte import Norte
 from Oeste import Oeste
 from Perezoso import Perezoso
 from Pared import Pared
 from Puerta import Puerta
+from PuertaConLlave import PuertaConLlave
 from Sur import Sur
 from Tunel import Tunel
 
@@ -121,7 +125,7 @@ class LaberintoBuilder:
     def fabricarLaberinto(self):
         self.laberinto = Laberinto()
 
-    def fabricarPuertaL1(self, num1, strOr1, num2, strOr2):
+    def fabricarPuertaL1(self, num1, strOr1, num2, strOr2, tipo_puerta=None):
     
         hab1 = self.laberinto.obtenerHabitacion(num1)
         hab2 = self.laberinto.obtenerHabitacion(num2)
@@ -129,7 +133,10 @@ class LaberintoBuilder:
         objOr1 = getattr(self, f"fabricar{strOr1.capitalize()}")()  # Ejemplo: fabricarNorte
         objOr2 = getattr(self, f"fabricar{strOr2.capitalize()}")()
 
-        pt = Puerta()
+        if tipo_puerta == "con_llave":
+            pt = PuertaConLlave()
+        else:
+            pt = Puerta()
         pt.lado1 = hab1
         pt.lado2 = hab2
 
@@ -147,3 +154,21 @@ class LaberintoBuilder:
 
     def obtenerJuego(self):
         return self.juego
+    
+    def fabricarCofre(self,unContenedor):
+        
+        # Define aquí los objetos posibles para el cofre
+        from Casco import Casco
+        from Pechera import Pechera
+        from Pantalones import Pantalones
+        from Botas import Botas
+        from Espada import Espada
+        from Moneda import Moneda
+        posibles_objetos = [Casco, Pechera, Pantalones, Botas, Espada, Moneda]
+        unContenedor.agregarHijo(Cofre(posibles_objetos))
+
+    def fabricarLlave(self, unContenedor):
+        unContenedor.agregarHijo(Llave())
+
+    def fabricarMoneda(self, unContenedor):
+        unContenedor.agregarHijo(Moneda())

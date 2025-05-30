@@ -8,13 +8,20 @@ class Bicho(Ente):
         super().__init__()
         self.modo = Perezoso()
 
+    def esAtacadoPor(self, alguien):
+        print(f"{self} es atacado por {alguien}")
+        self.vidas = max(0, self.vidas - alguien.ataque_total())
+        print(f"Vidas: {self.vidas}")
+        if self.vidas <= 0:
+            self.heMuerto()
+
     def iniAgresivo(self):
         self.modo = Agresivo()
-        self.poder=10
+        self.poder=30
 
     def iniPerezoso(self):
         self.modo = Perezoso()
-        self.poder=1
+        self.poder=5
 
     def obtenerOrientacion(self):
         return self.posicion.obtenerOrientacion()
