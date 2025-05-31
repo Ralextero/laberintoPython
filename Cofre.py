@@ -12,7 +12,7 @@ from Oro import Oro
 class Cofre(Contenedor):
     def __init__(self, posibles_objetos):
         super().__init__()
-        self.posibles_objetos = posibles_objetos  # Lista de clases de objetos posibles
+        posibles_objetos  # Lista de clases de objetos posibles
         materiales = [Diamante, Hierro, Oro]
         partes = {
             "Espada": Manos,
@@ -22,7 +22,7 @@ class Cofre(Contenedor):
             "Botas": Pies
         }
         for _ in range(3):
-            clase = random.choice(self.posibles_objetos)
+            clase = random.choice(posibles_objetos)
             if clase.__name__ in partes:
                 parte = partes[clase.__name__]()
                 material = random.choice(materiales)()
