@@ -12,3 +12,12 @@ class Casco(ArmaduraBase):
 
     def esArmadura(self):
         return True
+    
+    def esCasco(self):
+        return True
+
+    def equipando(self, personaje):
+        personaje.cabeza = self
+
+    def __str__(self):
+        return f"Casco de {self.material}"

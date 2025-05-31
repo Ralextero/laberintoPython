@@ -27,6 +27,15 @@ class ElementoMapa:
     def esPuerta(self):
         pass
 
+    def esCofre(self):
+        pass
+
+    def esArma(self):
+        return False
+    
+    def esArmadura(self):
+        return False
+
     def recorrer(self, unBloque):
         unBloque(self)
 

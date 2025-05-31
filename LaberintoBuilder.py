@@ -24,17 +24,29 @@ class LaberintoBuilder:
         self.laberinto = None
         self.juego = None
 
-    def fabricarArmario(self, unNum, unContenedor):
+    def fabricarArmario(self, unNum, unContenedor, unaOrientacion):
     
         from Armario import Armario  # Importa aquí para evitar dependencias circulares si las hay
 
         arm = Armario()
         arm.num = unNum
         arm.forma = self.fabricarForma()
+        
 
         for each in arm.obtenerOrientaciones():
             arm.ponerEnOr(each, self.fabricarPared())
-
+        if unaOrientacion:
+            if unaOrientacion:
+                unaOrientacion = unaOrientacion.lower()
+                if unaOrientacion == "norte":
+                    or_obj = self.fabricarNorte()
+                elif unaOrientacion == "sur":
+                    or_obj = self.fabricarSur()
+                elif unaOrientacion == "este":
+                    or_obj = self.fabricarEste()
+                elif unaOrientacion == "oeste":
+                    or_obj = self.fabricarOeste()
+            unContenedor.ponerEnOr(or_obj, arm)
         unContenedor.agregarHijo(arm)
         return arm
 
@@ -155,7 +167,7 @@ class LaberintoBuilder:
     def obtenerJuego(self):
         return self.juego
     
-    def fabricarCofre(self,unContenedor):
+    def fabricarCofre(self,unContenedor, unaOrientacion):
         
         # Define aquí los objetos posibles para el cofre
         from Casco import Casco
@@ -165,7 +177,19 @@ class LaberintoBuilder:
         from Espada import Espada
         from Moneda import Moneda
         posibles_objetos = [Casco, Pechera, Pantalones, Botas, Espada, Moneda]
-        unContenedor.agregarHijo(Cofre(posibles_objetos))
+        cofre = Cofre(posibles_objetos)
+        if unaOrientacion:
+            unaOrientacion = unaOrientacion.lower()
+            if unaOrientacion == "norte":
+                or_obj = self.fabricarNorte()
+            elif unaOrientacion == "sur":
+                or_obj = self.fabricarSur()
+            elif unaOrientacion == "este":
+                or_obj = self.fabricarEste()
+            elif unaOrientacion == "oeste":
+                or_obj = self.fabricarOeste()
+            unContenedor.ponerEnOr(or_obj, cofre)
+        unContenedor.agregarHijo(cofre)
 
     def fabricarLlave(self, unContenedor):
         unContenedor.agregarHijo(Llave())

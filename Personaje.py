@@ -21,40 +21,34 @@ class Personaje(Ente):
         self.pies = Pies()
         self.mano = Manos()
 
+    def mostrar_estado(self):
+        print(f"\nEstado del personaje:")
+        print(f"Nombre: {self.nombre}")
+        print(f"Vidas: {self.vidas}")
+        print(f"Ataque: {self.ataque_total()}")
+        print(f"Defensa: {self.defensa_total()}")
+        if hasattr(self.posicion, 'num'):
+            print(f"Posición actual: Habitación {self.posicion.num}")
+        else:
+            print(f"Posición actual: {self.posicion}")
+
     def recoger(self, objeto):
         # Si es arma o armadura, pregunta si quiere equipar o guardar en mochila
-        if hasattr(objeto, "esArma") and objeto.esArma():
-            self.equipar(objeto)
-        elif hasattr(objeto, "esArmadura") and objeto.esArmadura():
+        if objeto.esArma() or objeto.esArmadura():
             self.equipar(objeto)
         else:
             self.mochila.agregar(objeto)
 
-    # Ejemplo de método en Personaje.py
-    def recoger_de_cofre(self, cofre, indice):
-        if 0 <= indice < len(cofre.hijos):
-            objeto = cofre.hijos[indice]
-            self.recoger(objeto)
-            cofre.eliminarHijo(objeto)
-        else:
-            print("No hay objeto en esa posición del cofre.")
-
     def equipar(self, objeto):
-        # Decora la parte correspondiente
-        if objeto.esArma():
-            self.mano = objeto.__class__(self.mano, objeto.material)
-            print(f"Has equipado {objeto}")
-        elif objeto.esArmadura():
-            tipo = objeto.__class__.__name__.lower()
-            if tipo == "casco":
-                self.cabeza = objeto.__class__(self.cabeza, objeto.material)
-            elif tipo == "pechera":
-                self.tronco = objeto.__class__(self.tronco, objeto.material)
-            elif tipo == "pantalones":
-                self.piernas = objeto.__class__(self.piernas, objeto.material)
-            elif tipo == "botas":
-                self.pies = objeto.__class__(self.pies, objeto.material)
-            print(f"Has equipado {objeto}")
+        objeto.equipando(self)
+        print(f"Has equipado {objeto}")
+
+    def comprar(self,cantidad):
+        if self.mochila.contarMonedas() >= cantidad:
+            self.mochila.gastarMonedas(cantidad)
+            print(f"Has comprado un objeto por {cantidad} monedas.")
+        else:
+            print("No tienes suficientes monedas para comprar.")
 
     def defensa_total(self):
         return(
@@ -113,6 +107,9 @@ class Personaje(Ente):
         lista = []
         self.posicion.recorrer(lambda each: lista.extend(each.obtenerComandos()))
         return lista
+
+    def esPersonaje(self):
+        return True
 
     def __str__(self):
         return f"Personaje {self.nombre}"

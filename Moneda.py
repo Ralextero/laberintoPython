@@ -7,7 +7,6 @@ class Moneda(ElementoMapa):
     def interactuar(self, personaje):
         personaje.recoger(self)
         personaje.posicion.eliminarHijo(self)
-        print("Has recogido una moneda.")
 
     def esMoneda(self):
         return True

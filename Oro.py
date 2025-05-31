@@ -10,5 +10,8 @@ class Oro(Material):
     def bonificacion_ataque(self):
         return 5
     
+    def esOro(self):
+        return True
+
     def __str__(self):
         return self.nombre

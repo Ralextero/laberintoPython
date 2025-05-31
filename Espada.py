@@ -1,6 +1,6 @@
-from ElementoMapa import ElementoMapa
+from Armamento import Armamento
 
-class Espada(ElementoMapa):
+class Espada(Armamento):
     def __init__(self, parte, material):
         super().__init__(parte, material)
         self.ataque_base = 3  # Ejemplo
@@ -13,6 +13,9 @@ class Espada(ElementoMapa):
 
     def esArma(self):
         return True
+
+    def equipando(self, personaje):
+        personaje.mano = self
 
     def __str__(self):
         return f"Espada de {self.material}"

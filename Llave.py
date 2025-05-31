@@ -12,7 +12,10 @@ class Llave(ElementoMapa):
     def interactuar(self, personaje):
         personaje.recoger(self)
         personaje.posicion.eliminarHijo(self)
-        print("Has recogido la llave.")
+        print("Has recogido una llave.")
+
+    def esLlave(self):
+        return True
 
     def __str__(self):
         return "Llave"

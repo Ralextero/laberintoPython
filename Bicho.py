@@ -49,3 +49,6 @@ class Bicho(Ente):
 
     def puedeAtacar(self):
         self.juego.buscarPersonaje(self)
+
+    def esPersonaje(self):
+        return False

@@ -10,5 +10,14 @@ class Pantalones(ArmaduraBase):
     def bonificacion_ataque(self):
         return 0
 
+    def esPantalones(self):
+        return True
+
     def esArmadura(self):
         return True
+
+    def equipando(self, personaje):
+        personaje.piernas = self
+
+    def __str__(self):
+        return f"Pantalones de {self.material}"

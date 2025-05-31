@@ -40,4 +40,5 @@ class Ente:
     def puedeAtacar(self):
         pass
 
-    
+    def esPersonaje(self):
+        pass

@@ -42,9 +42,11 @@ class Director:
         if unDic.get('tipo') == 'habitacion':
             con = self.builder.fabricarHabitacion(unDic.get('num'))
         elif unDic.get('tipo') == 'armario':
-            con = self.builder.fabricarArmario(unDic.get('num'), padre)
+            orientacion = unDic.get('orientacion', None)
+            con = self.builder.fabricarArmario(unDic.get('num'), padre, orientacion)
         elif unDic.get('tipo') == 'cofre':
-            con = self.builder.fabricarCofre(padre)
+            orientacion = unDic.get('orientacion', None)
+            con = self.builder.fabricarCofre(padre, orientacion)
         elif unDic.get('tipo') == 'llave':
             from Llave import Llave
             con = self.builder.fabricarLlave(padre)

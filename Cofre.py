@@ -31,13 +31,34 @@ class Cofre(Contenedor):
                 objeto = clase()
             self.agregarHijo(objeto)
 
-    def interactuar(self, personaje):
+    def esCofre(self):
+        return True
+
+    def mostrar_menu(self):
         if not self.hijos:
             print("El cofre está vacío.")
             return
-        print("¡Has abierto un cofre y encontrado:")
-        for obj in self.hijos:
-            print(f"  - {obj}")
+        print("\nEl cofre contiene:")
+        for idx, obj in enumerate(self.hijos, 1):
+            print(f"{idx}. {obj}")
+        print(f"{len(self.hijos)+1}. Salir")
+
+    def recoger_objeto(self, personaje, indice):
+        if 0 <= indice < len(self.hijos):
+            objeto = self.hijos[indice]
+            personaje.recoger(objeto)
+            self.eliminarHijo(objeto)
+            print(f"Has recogido {objeto}.")
+            return True
+        else:
+            print("Opción no válida.")
+            return False
+
+    def recorrer(self, unBloque):
+        pass
+
+    def entrar(self, alguien):
+        return
 
     def __str__(self):
         return "Cofre"

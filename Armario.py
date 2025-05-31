@@ -13,3 +13,13 @@ class Armario(Contenedor):
     
     def visitarContenedor(self, unVisitor):
         unVisitor.visitarArmario(self)
+
+    def puedeEntrar(self,alguien):
+        return alguien.esPersonaje()
+    
+    def entrar(self, alguien):
+        if self.puedeEntrar(alguien):
+            super().entrar(alguien)
+
+    def salir(self, alguien):
+        self.padre.entrar(alguien)

@@ -10,5 +10,14 @@ class Pechera(ArmaduraBase):
     def bonificacion_ataque(self):
         return 0
 
+    def esPechera(self):
+        return True
+
     def esArmadura(self):
         return True
+
+    def equipando(self, personaje):
+        personaje.tronco = self
+
+    def __str__(self):
+        return f"Pechera de {self.material}"

@@ -10,5 +10,8 @@ class Madera(Material):
     def bonificacion_ataque(self):
         return 1
     
+    def esMadera(self):
+        return True
+
     def __str__(self):
         return self.nombre

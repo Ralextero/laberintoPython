@@ -5,7 +5,6 @@ class Cerrada(EstadoPuerta):
     def abrir(self, unaPuerta):
         from Abierta import Abierta
         unaPuerta.estado = Abierta()
-        print(f"{unaPuerta} se ha abierto")
 
     def cerrar(self, unaPuerta):
         "ya cerrada"

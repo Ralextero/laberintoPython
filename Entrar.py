@@ -1,4 +1,4 @@
-import Comando
+from Comando import Comando
 
 
 class Entrar(Comando):

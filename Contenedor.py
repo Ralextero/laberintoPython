@@ -97,3 +97,9 @@ class Contenedor(ElementoMapa):
 
     def visitarContenedor(self, unVisitor):
         pass
+
+    def esTunel(self):
+        return False
+    
+    def esCofre(self):
+        return False

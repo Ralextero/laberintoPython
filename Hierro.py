@@ -10,5 +10,8 @@ class Hierro(Material):
     def bonificacion_ataque(self):
         return 3
     
+    def esHierro(self):
+        return True
+
     def __str__(self):
         return self.nombre

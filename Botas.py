@@ -12,3 +12,12 @@ class Botas(ArmaduraBase):
 
     def esArmadura(self):
         return True
+    
+    def esBotas(self):
+        return True
+    
+    def equipando(self,personaje):
+        personaje.pies = self
+
+    def __str__(self):
+        return f"Botas de {self.material}"
