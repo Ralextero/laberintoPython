@@ -14,17 +14,17 @@ class Norte(Orientacion):
         pos.irAlNorte(unBicho)
 
     def ponerElemento(self, unEM, unContenedor):
-        unContenedor.norte = unEM
+        unContenedor.orientaciones[self.__class__.__name__.lower()] = unEM
 
     def obtenerElementoOrEn(self, unContenedor):
-        return unContenedor.norte
-    
+        return unContenedor.orientaciones["norte"]
+
     def recorrer(self, unBloque, unContenedor):
-        unContenedor.norte.recorrer(unBloque)
+        unContenedor.orientaciones["norte"].recorrer(unBloque)
 
     def calcularPosicionDesde(self, unaForma):
         unPunto = (unaForma.punto.x, unaForma.punto.y - 1)
-        unaForma.norte.calcularPosicionDesde(unaForma, unPunto)
+        unaForma.orientaciones["norte"].calcularPosicionDesde(unaForma, unPunto)
 
     def __str__(self):
         return f"Norte"

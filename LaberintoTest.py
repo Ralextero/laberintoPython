@@ -7,8 +7,8 @@ class LaberintoTest(TestCase):
     def setUp(self):
         super().setUp()
         self.juego = Juego()
-        fm = Creator()
-        self.juego.crearLaberinto2HabitacionesFM(fm)
+        self.fm = Creator()
+        self.juego.crearLaberinto2HabitacionesFM(self.fm)
 
     def testHabitaciones(self):
         norte = self.fm.fabricarNorte()
@@ -20,16 +20,15 @@ class LaberintoTest(TestCase):
         self.assertTrue(hab1.esHabitacion())
         self.assertTrue(hab2.esHabitacion())
         self.assertTrue(hab1.obtenerElementoOr(norte).esPared())
-        self.assertTrue(hab1.obtenerElementoOr(sur).esPared())
         self.assertTrue(hab1.obtenerElementoOr(este).esPared())
-        self.assertTrue(hab1.obtenerElementoOr(oeste).esPuerta())
+        self.assertTrue(hab1.obtenerElementoOr(oeste).esPared())
         self.assertTrue(hab2.obtenerElementoOr(sur).esPared())
-        self.assertTrue(hab2.obtenerElementoOr(este).esPuerta())
+        self.assertTrue(hab2.obtenerElementoOr(este).esPared())
         self.assertTrue(hab2.obtenerElementoOr(oeste).esPared())
         pt12 = hab1.obtenerElementoOr(sur)
         self.assertTrue(pt12.esPuerta())
         self.assertTrue(hab2.obtenerElementoOr(norte).esPuerta())
-        self.assertTrue( not (pt12.abierta()))
+        self.assertTrue( not (pt12.estaAbierta()))
 
     def testIniciales(self):
         self.assertTrue((self.juego)!= None)

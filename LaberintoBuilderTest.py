@@ -79,7 +79,7 @@ class LaberintoBuilderTest(TestCase):
     def setUp(self):
         super().setUp()
         self.director = Director()
-        ruta_base = r'C:\Users\alexr\Desktop\UCLM\Ano_3\Cuatrimestre 2\Diseño software\laberintos\\'
+        ruta_base = r'C:\\Users\\alexr\\Desktop\\UCLM\\Ano_3\\Cuatrimestre 2\\Diseño software\\laberintos\\'
         ruta = ruta_base + 'lab2HTunel.json'
         self.director.procesar(ruta)
         self.dict = self.director.dict
@@ -94,12 +94,12 @@ class LaberintoBuilderTest(TestCase):
 
         self.assertIsNotNone(bicho, "El bicho no debería ser None")
         self.assertIsNotNone(person, "El personaje no debería ser None")
-
+        bicho.poder = 5
         hab1.entrar(bicho)
         hab1.entrar(person)
 
         bicho.atacar()
-        self.assertEqual(person.vidas, 0, "Las vidas del personaje deberían ser 0 después del ataque")
+        self.assertEqual(person.vidas, 995, "Las vidas del personaje deberían ser 995 después del ataque")
 
     def testIniciales(self):
     
@@ -127,7 +127,7 @@ class LaberintoBuilderTest(TestCase):
 
         self.assertEqual(self.juego.person.posicion, hab, "La posición del personaje no coincide con la habitación 1")
 
-        self.assertEqual(self.juego.person.vidas, 5, "Las vidas del personaje deberían ser 5")
+        self.assertEqual(self.juego.person.vidas, 1000, "Las vidas del personaje deberían ser 1000")
 
     def testPersonajeAtaca(self):
     

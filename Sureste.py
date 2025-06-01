@@ -13,17 +13,17 @@ class Sureste(Orientacion):
         pos.irAlSureste(unBicho)
 
     def ponerElemento(self, unEM, unContenedor):
-        unContenedor.sureste = unEM
+        unContenedor.orientaciones[self.__class__.__name__.lower()] = unEM
 
     def obtenerElementoOrEn(self, unContenedor):
-        return unContenedor.sureste
+        return unContenedor.orientaciones["sureste"]
 
     def recorrer(self, unBloque, unContenedor):
-        unContenedor.sureste.recorrer(unBloque)
+        unContenedor.orientaciones["sureste"].recorrer(unBloque)
 
     def calcularPosicionDesde(self, unaForma):
         unPunto = (unaForma.punto.x + 1, unaForma.punto.y + 1)
-        unaForma.sureste.calcularPosicionDesde(unaForma, unPunto)
+        unaForma.orientaciones["sureste"].calcularPosicionDesde(unaForma, unPunto)
 
     def __str__(self):
         return f"Sureste"

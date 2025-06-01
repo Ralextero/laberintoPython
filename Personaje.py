@@ -65,7 +65,7 @@ class Personaje(Ente):
 
     def esAtacadoPor(self, alguien):
         print(f"{self} es atacado por {alguien}")
-        self.vidas = self.vidas - max(0, self.defensa_total() - alguien.poder)
+        self.vidas = self.vidas - max(0, alguien.poder - self.defensa_total())
         print(f"Vidas: {self.vidas}")
         if self.vidas <= 0:
             self.heMuerto()
@@ -110,6 +110,9 @@ class Personaje(Ente):
 
     def esPersonaje(self):
         return True
+
+    def esBicho(self):
+        return False
 
     def __str__(self):
         return f"Personaje {self.nombre}"

@@ -34,3 +34,6 @@ class InventarioMochila:
         print("Mochila:")
         for obj in self.objetos:
             print(f"  - {obj}")
+
+    def vaciar(self):
+        self.objetos.clear()

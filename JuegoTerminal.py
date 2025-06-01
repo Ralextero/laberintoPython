@@ -123,10 +123,9 @@ class JuegoTerminal:
                 orientacion = dato
                 elem = self.personaje.posicion.obtenerElementoOr(orientacion)
                 self.menu_cofre(elem)
-            elif accion == "tunel":
-                orientacion = dato
-                elem = self.personaje.posicion.obtenerElementoOr(orientacion)
-                elem.entrar(self.personaje)
+            elif accion == "tunel_centro":
+                obj = dato  # dato es el objeto túnel
+                obj.entrar(self.personaje)
             elif accion == "recoger_objeto":
                 obj = dato
                 obj.interactuar(self.personaje)
@@ -164,9 +163,9 @@ class JuegoTerminal:
             if not self.ejecutar_comando(comando):
                 break
             self.personaje.mostrar_estado()
-            #if cont == 0:
-             #   self.juego.lanzarBichos()
-              #  cont += 1
+            if cont == 0:
+               self.juego.lanzarBichos()
+               cont += 1
 
 if __name__ == "__main__":
     # Ruta al archivo JSON

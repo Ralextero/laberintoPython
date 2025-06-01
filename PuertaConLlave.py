@@ -1,6 +1,10 @@
 from Puerta import Puerta
 
 class PuertaConLlave(Puerta):
+
+    def __init__(self):
+        super().__init__()
+
     def abrir(self, personaje = None):
         if personaje is None:
             print("Puerta especial, no se abre así.")

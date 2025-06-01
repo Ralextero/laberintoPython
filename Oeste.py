@@ -14,17 +14,17 @@ class Oeste(Orientacion):
         pos.irAlOeste(unBicho)
 
     def ponerElemento(self, unEM, unContenedor):
-        unContenedor.oeste = unEM
+        unContenedor.orientaciones[self.__class__.__name__.lower()] = unEM
 
     def obtenerElementoOrEn(self, unContenedor):
-        return unContenedor.oeste
-    
+        return unContenedor.orientaciones["oeste"]
+
     def recorrer(self, unBloque, unContenedor):
-        unContenedor.oeste.recorrer(unBloque)
+        unContenedor.orientaciones["oeste"].recorrer(unBloque)
 
     def calcularPosicionDesde(self, unaForma):
         unPunto = (unaForma.punto.x - 1, unaForma.punto.y)
-        unaForma.oeste.calcularPosicionDesde(unaForma, unPunto)
+        unaForma.orientaciones["oeste"].calcularPosicionDesde(unaForma, unPunto)
 
     def __str__(self):
         return f"Oeste"

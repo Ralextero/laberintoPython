@@ -1,5 +1,6 @@
 from Bicho import Bicho
 from Bomba import Bomba
+from Cuadrado import Cuadrado
 from Pared import Pared
 from Puerta import Puerta
 from Habitacion import Habitacion
@@ -72,6 +73,7 @@ class Creator:
     def fabricarHabitacion(self, unNum):
         hab = Habitacion()
         hab.num= unNum
+        hab.forma = Cuadrado()
         hab.agregarOrientacion(self.fabricarEste())
         hab.agregarOrientacion(self.fabricarOeste())
         hab.agregarOrientacion(self.fabricarNorte())

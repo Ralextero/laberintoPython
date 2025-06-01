@@ -6,7 +6,7 @@ class Bicho(Ente):
 
     def __init__(self):
         super().__init__()
-        self.modo = Perezoso()
+        self.modo = self.iniPerezoso()
 
     def esAtacadoPor(self, alguien):
         print(f"{self} es atacado por {alguien}")
@@ -49,6 +49,9 @@ class Bicho(Ente):
 
     def puedeAtacar(self):
         self.juego.buscarPersonaje(self)
+
+    def esBicho(self):
+        return True
 
     def esPersonaje(self):
         return False

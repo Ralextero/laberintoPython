@@ -35,10 +35,16 @@ class Ente:
         pass
 
     def juegoClonaLaberinto(self):
-        return self.juego.clonarLaberinto()
+        if self.esBicho():
+            pass
+        else:
+            return self.juego.clonarLaberinto()
     
     def puedeAtacar(self):
         pass
 
     def esPersonaje(self):
+        pass
+
+    def esBicho(self):
         pass

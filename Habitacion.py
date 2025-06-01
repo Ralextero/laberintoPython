@@ -5,7 +5,8 @@ class Habitacion(Contenedor):
     def __init__(self):
         super().__init__()
         self.num = None
-    
+        self.forma= None
+
     def esHabitacion(self):
         return True
 

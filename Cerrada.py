@@ -12,5 +12,8 @@ class Cerrada(EstadoPuerta):
     def entrar(self, alguien, unaPuerta):
         print(f"{alguien} ha chocado con una puerta")
 
+    def estaAbierta(self):
+        return False
+
     def __str__(self):
         return "Cerrada"

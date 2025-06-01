@@ -3,7 +3,7 @@ from ElementoMapa import ElementoMapa
 
 class Puerta(ElementoMapa):
 
-    def abrir(self):
+    def abrir(self,personaje=None):
         self.estado.abrir(self)
         print(f"{self} ha sido abierta.")
 

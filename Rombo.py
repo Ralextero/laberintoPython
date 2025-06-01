@@ -4,7 +4,7 @@ class Rombo(Forma):
     
     def __init__(self):
         super().__init__()
-        self.noreste = None
-        self.sureste = None
-        self.suroeste = None
-        self.noroeste = None
+        self.orientaciones["noreste"] = None
+        self.orientaciones["sureste"] = None
+        self.orientaciones["suroeste"] = None
+        self.orientaciones["noroeste"] = None
