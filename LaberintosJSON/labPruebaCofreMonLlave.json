@@ -1,0 +1,58 @@
+{
+    "forma": "cuadrado",
+    "laberinto": [
+        {"tipo": "habitacion", "num": 1, "hijos": [
+            {"tipo": "llave"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "moneda"},
+            {"tipo": "cofre", "orientacion": "norte"},
+            {"tipo": "cofre"},
+            {"tipo": "tunel"} 
+        ]},
+        {"tipo": "habitacion", "num": 2, "hijos": [
+            {"tipo":"armario", "orientacion": "este"}
+            
+        ]},
+        {"tipo": "habitacion", "num": 3, "hijos": [
+            {"tipo": "moneda"}
+        ]},
+        {"tipo": "habitacion", "num": 4, "hijos": []}
+    ],
+    "puertas": [
+        [1, "Este", 2, "Oeste","con_llave"],
+        [2, "Sur", 3, "Norte"],
+        [3, "Oeste", 4, "Este"],
+        [4, "Norte", 1, "Sur"]
+    ],
+    "bichos": [
+        {"modo": "Agresivo", "posicion": 2},
+        {"modo": "Perezoso", "posicion": 3}
+    ]
+}
